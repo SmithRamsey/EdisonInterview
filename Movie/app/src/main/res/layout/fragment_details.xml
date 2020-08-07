@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.details.DetailsFragment"
+    >
+
+    <data>
+        <variable
+            name="discoverItem"
+            type="com.example.movie.model.discovermodel.ResultsItem" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/const1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/detailsFragment_layoutMargin">
+
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/nestedScroll_height"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/detailsFragment_layoutMargin">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_title_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{discoverItem.title}"
+                    android:textSize="@dimen/tittle_textSize"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    app:layout_constraintTop_toBottomOf="@id/IV_details_frame" />
+
+
+                <FrameLayout
+                    android:id="@+id/IV_details_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/detailsFrame_height"
+                    android:layout_marginTop="@dimen/detailsFrame_topMargin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                <ProgressBar
+                    android:id="@+id/loading_bar"
+                    android:theme="@style/ProgressBarStyle"
+                    android:layout_width="@dimen/details_Progressbar"
+                    android:layout_height="@dimen/details_Progressbar"
+                    android:layout_gravity="center"
+                    />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerInside"
+                    app:loadImage="@{(`https://image.tmdb.org/t/p/original` + discoverItem.backdropPath)}"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                </FrameLayout>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_overview_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/detailsOverview_topMargin"
+                    android:textSize="@dimen/detailsOverview_textSize"
+                    android:text="@{`Overview: ` + discoverItem.overview}"
+                    app:layout_constraintTop_toBottomOf="@id/tv_popularity_details" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_releaseDate_details"
+                    android:layout_width="@dimen/zero"
+                    android:textSize="@dimen/detailsReleaseDate_textSize"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/detailsReleaseDate_topMargin"
+                    android:text="@{`Release Date: ` + discoverItem.releaseDate}"
+                    app:layout_constraintTop_toBottomOf="@id/tv_overview_details"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/tv_popularity_details"
+                    android:layout_width="@dimen/zero"
+                    android:textSize="@dimen/detailsPopularity_textSize"
+                    android:text="@{`Popularity Score: ` + Double.toString(discoverItem.popularity)}"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_genre_details"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_marginTop="@dimen/detailsGenre_topMargin"
+                    android:id="@+id/tv_genre_details"
+                    android:layout_width="@dimen/zero"
+                    android:textSize="@dimen/detailsGenre_textSize"
+                    android:layout_height="wrap_content"
+                    app:loadGenre="@{discoverItem.genreIds}"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title_details"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

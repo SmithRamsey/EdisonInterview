@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.settings.SettingsFragment">
+
+
+
+
+    <Switch
+        android:id="@+id/switchMaterial"
+        android:layout_width="@dimen/dayNight_switchSize"
+        android:layout_height="@dimen/dayNight_switchSize"
+        android:layout_marginTop="@dimen/dayNight_switchMargin"
+        android:layout_marginEnd="@dimen/dayNight_switchMargin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_day_night_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/night_mode"
+        android:textSize="@dimen/dayNight_textSize"
+        app:layout_constraintBaseline_toBaselineOf="@+id/switchMaterial"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/dayNight_startMargin" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

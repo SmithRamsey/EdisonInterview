@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="discoverItem"
+            type="com.example.movie.model.discovermodel.ResultsItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_launch_history_item"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/pressed_selector">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/blue_clicked"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/item_bg" />
+
+
+
+
+            <FrameLayout
+                android:id="@+id/IV_home_frame"
+                android:layout_width="107dp"
+                android:layout_height="160dp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <ProgressBar
+                    android:id="@+id/loading_bar"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:theme="@style/ProgressBarStyle"
+                    android:layout_gravity="center" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_thumbnail_discover"
+                android:layout_width="107dp"
+                android:layout_height="160dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                app:loadImage="@{(`https://image.tmdb.org/t/p/original` + discoverItem.posterPath)}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+            </FrameLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_title_discover"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{discoverItem.title}"
+                android:textSize="20sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/IV_home_frame"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginLeft="@dimen/icon_margin"
+                android:layout_marginStart="@dimen/icon_margin"
+                android:layout_marginEnd="@dimen/icon_margin"
+                android:layout_marginRight="@dimen/icon_margin" />
+            
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_genre_discover"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                app:loadGenre="@{discoverItem.genreIds}"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_discover"
+                app:layout_constraintStart_toEndOf="@+id/IV_home_frame"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/tv_popularity_discover"
+                android:layout_marginEnd="@dimen/icon_margin"
+                android:layout_marginRight="@dimen/icon_margin"
+                android:layout_marginLeft="@dimen/icon_margin"
+                android:layout_marginStart="@dimen/icon_margin"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_popularity_discover"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="@{`Popularity Score: ` + Double.toString(discoverItem.popularity)}"
+                app:layout_constraintStart_toEndOf="@+id/IV_home_frame"
+                app:layout_constraintTop_toBottomOf="@id/tv_genre_discover"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/tv_releaseDate_discover"
+                android:gravity="start"
+                android:layout_marginEnd="@dimen/icon_margin"
+                android:layout_marginRight="@dimen/icon_margin"
+                android:layout_marginLeft="@dimen/icon_margin"
+                android:layout_marginStart="@dimen/icon_margin"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_releaseDate_discover"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="@{`Release Date: ` + discoverItem.releaseDate}"
+                app:layout_constraintStart_toEndOf="@+id/IV_home_frame"
+                app:layout_constraintTop_toBottomOf="@id/tv_popularity_discover"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:gravity="start"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/icon_margin"
+                android:layout_marginRight="@dimen/icon_margin"
+                android:layout_marginLeft="@dimen/icon_margin"
+                android:layout_marginStart="@dimen/icon_margin"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!--    </com.google.android.material.card.MaterialCardView>-->
+</layout>
