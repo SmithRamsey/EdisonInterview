@@ -1,2 +1,2 @@
-# EdisonInterview
+# MovieDB 
 Movie App
